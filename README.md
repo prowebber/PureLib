@@ -11,9 +11,10 @@ This significantly reduces file size and load time.
 2. Use the commands below to access the functions.
 
 ### Editing via DOM
-These functions expect to receive a DOM value as an argument.
+These functions expect to receive a DOM value as an argument.  Call in JavaScript with `l.dom.{command(args)}`.
 
 | Command                                         | Action                                                             |
 |:------------------------------------------------|:-------------------------------------------------------------------|
-| `l.dom.addClass(dom, className)`                | Add the specified CSS class to the specified DOM element           |
-| `l.dom.addClassToAll(dom, selector, className)` | Add the specified CSS class to all matched elements inside the DOM |
+| `addClass(dom, className)`                | Add the specified CSS class to the specified DOM element           |
+| `addClassToAll(dom, selector, className)` | Add the specified CSS class to all matched elements inside the DOM |
+[l.dom]
