@@ -13,3 +13,7 @@ This significantly reduces file size and load time.
 ### Editing via DOM
 These functions expect to receive a DOM value as an argument.
 
+| Command                                         | Action                                                             |
+|:------------------------------------------------|:-------------------------------------------------------------------|
+| `l.dom.addClass(dom, className)`                | Add the specified CSS class to the specified DOM element           |
+| `l.dom.addClassToAll(dom, selector, className)` | Add the specified CSS class to all matched elements inside the DOM |
