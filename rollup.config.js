@@ -4,7 +4,7 @@ import babel from 'rollup-plugin-babel';
 
 export default [
     {
-        input: 'master/index.js',
+        input: 'src/index.js',
         treeshake: false,
         output: {
             file: 'build/purelib.js',

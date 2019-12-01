@@ -133,6 +133,56 @@ export function getDistanceFromTop(containerDom){
  * @param e                                     JavaScript event data
  * @returns {{top: number, left: number}}
  */
-export function getMouseCoordinates(){
+export function getMouseCoordinates(containerDom, e){
+    let client = containerDom.getBoundingClientRect();
 
+    let xPosition = 0;
+    let yPosition = 0;
+
+    let coordinates = {
+        'container': {
+            'top': containerDom.offsetTop,                  // The distance of the nearest container from the top of the page in px
+            'left': containerDom.offsetLeft,                // The distance of the nearest container from the left of the page in px
+        },
+        'doc': {
+            'top': e.pageY,                                 // The distance of the user's cursor from the top of the page in px
+            'left': e.pageX                                 // The distance of the user's cursor from the left of the page in px
+        },
+        'client': {
+            'top': client.top,
+            'left': client.left,
+            'height': client.height,
+        },
+        'window': {
+            'top': window.pageYOffset,
+            'left': window.pageXOffset,
+        },
+        'computed':{
+            'top': yPosition,
+            'left': xPosition,
+        }
+    };
+
+    // Loop through the parent nodes until you reach the top of the page (since the offset top will stop a parents with position relative/absolute)
+    while(containerDom){
+        xPosition += (containerDom.offsetLeft - containerDom.scrollLeft + containerDom.clientLeft);
+        yPosition += (containerDom.offsetTop - containerDom.scrollTop + containerDom.clientTop);
+        containerDom = containerDom.offsetParent;
+    }
+
+    coordinates.computed.top = yPosition;
+    coordinates.computed.left = xPosition;
+
+    return coordinates;
+}
+
+
+/**
+ * Gets the text value of an element (e.g. <div>Test</div> would return 'test')
+ *
+ * @param dom               The dom of the element
+ * @returns {string}        The text value inside that element
+ */
+export function getTextValue(dom){
+    return dom.textContent;
 }
