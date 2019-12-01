@@ -29,16 +29,6 @@ export function addClassToAll(dom, selector, className){
 }
 
 /**
- * Show an element (if it was previously hidden)
- *
- * @param dom        The specified DOM
- */
-export function show(dom) {
-    dom.classList.remove('hide');
-}
-
-
-/**
  * Finds the closest element via the specified selector and returns the element's DOM
  *  - Searches up the DOM tree
  *
@@ -57,7 +47,7 @@ export function closestEl(dom, selector){
  * @param dataAttribute                     The data attribute to get the value of
  * @returns {(string | null) | string}      The data value
  */
-export function data(dom, dataAttribute){
+export function dataAttr(dom, dataAttribute){
     let attribute_name = 'data-' + dataAttribute;
     return dom.getAttribute([attribute_name]);
 }
@@ -69,7 +59,7 @@ export function data(dom, dataAttribute){
  * @param dataAttribute         The name of the data attribute
  * @returns {string | null}     The value of the data attribute
  */
-export function dropdownDataAttribute(dom, dataAttribute){
+export function dropdownDataAttr(dom, dataAttribute){
     let attribute_name = 'data-' + dataAttribute;
     let selected = dom.options[dom.selectedIndex];          // Find the selected item in the dropdown
     return selected.getAttribute(attribute_name);           // Return the specified data attribute
