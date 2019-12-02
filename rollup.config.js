@@ -9,7 +9,7 @@ export default [
         output: {
             file: 'build/purelib.js',
             format: 'iife',
-            name: 'steven',
+            name: 'l',
             sourcemap: false
         },
         plugins: [
