@@ -24,7 +24,7 @@ let pureLib = (function() {
         /**
          * Add the specified CSS class to the specified DOM element
          *
-         * @param dom           DOM to add a class to
+         * @param target        DOM object or HTML element ID
          * @param className     The class name to add
          */
         'addClass': function(target, className){
@@ -35,7 +35,7 @@ let pureLib = (function() {
         /**
          * Add the specified class to all elements inside a DOM
          *
-         * @param dom           The DOM the elements are inside
+         * @param target        DOM object or HTML element ID
          * @param selector      The selector text to match
          * @param className     The class to add
          */
@@ -52,7 +52,7 @@ let pureLib = (function() {
          * Finds the closest element by the specified selector and returns the element's DOM
          *  - Searches up the DOM tree
          *
-         * @param dom           The DOM of the starting point
+         * @param target        DOM object or HTML element ID
          * @param selector      e.g. images, .classname, #id
          * @returns {*}         The DOM of the matched element
          */
@@ -64,7 +64,7 @@ let pureLib = (function() {
         /**
          * Get the data-attribute value for the specified DOM
          *
-         * @param dom                               The DOM to target
+         * @param target        DOM object or HTML element ID
          * @param dataAttribute                     The data attribute to get the value of
          * @returns {(string | null) | string}      The data value
          */
@@ -91,7 +91,7 @@ let pureLib = (function() {
         /**
          * Get the value of the currently selected option in an HTML dropdown menu
          *
-         * @param dom               The DOM element to match
+         * @param target        DOM object or HTML element ID
          * @returns {string}        The value of the selected element
          */
         'dropdownValue': function (target) {
@@ -115,9 +115,8 @@ let pureLib = (function() {
         /**
          * Return the DOM of all elements matched within the parent (equivalent of jQuery find)
          *
-         * @param dom           The DOM the elements are inside
+         * @param target        DOM object or HTML element ID
          * @param selector      The selector text to match
-         * @param className     The class to add
          */
         'findAllBySelector': function (target, selector) {
             let dom = ctd(target);                                  // Get the DOM
@@ -209,7 +208,7 @@ let pureLib = (function() {
         /**
          * Gets the text value of an element (e.g. <div>Test</div> would return 'test')
          *
-         * @param dom               The dom of the element
+         * @param target            DOM object or HTML element ID
          * @returns {string}        The text value inside that element
          */
         'getTextValue': function (target) {
@@ -221,7 +220,7 @@ let pureLib = (function() {
         /**
          * Determine if a class exists
          *
-         * @param dom               The DOM of the element
+         * @param target            DOM object or HTML element ID
          * @param className         The class to search for
          * @returns {boolean}       True if class exists; false otherwise
          */
@@ -235,7 +234,7 @@ let pureLib = (function() {
         /**
          * Hide an element from the screen
          *
-         * @param dom    The specified DOM
+         * @param target        DOM object or HTML element ID
          */
         'hide': function (target) {
             let dom = ctd(target);                                  // Get the DOM
@@ -304,7 +303,7 @@ let pureLib = (function() {
         /**
          * Removes an element from the DOM
          *
-         * @param dom               The DOM of the element to remove
+         * @param target        DOM object or HTML element ID
          */
         'remove': function (target) {
             let dom = ctd(target);                                  // Get the DOM
@@ -315,7 +314,7 @@ let pureLib = (function() {
         /**
          * Remove the specified class from a DOM element
          *
-         * @param dom           The DOM of the element
+         * @param target        DOM object or HTML element ID
          * @param className     (string|array): string - The class to remove, Array - a list of classes to remove
          */
         'removeClass': function (target, className) {
@@ -334,7 +333,7 @@ let pureLib = (function() {
         /**
          * Remove the specified class from all elements inside a DOM
          *
-         * @param dom           The DOM the elements are inside
+         * @param target        DOM object or HTML element ID
          * @param selector      The selector text to match
          * @param className     The class to remove
          */
@@ -351,7 +350,7 @@ let pureLib = (function() {
         /**
          * Set/update a data-attribute value for a DOM element
          *
-         * @param dom               The DOM element to target
+         * @param target            DOM object or HTML element ID
          * @param dataAttribute     The data attribute name
          * @param value             The value to assign
          */
@@ -364,7 +363,7 @@ let pureLib = (function() {
         /**
          * Show an element (if it was previously hidden)
          *
-         * @param dom        The specified DOM
+         * @param target        DOM object or HTML element ID
          */
         'show': function (target) {
             let dom = ctd(target);                                  // Get the DOM
@@ -375,7 +374,7 @@ let pureLib = (function() {
         /**
          * Replace the HTML inside the matching container
          *
-         * @param dom
+         * @param target        DOM object or HTML element ID
          * @param htmlCode
          */
         'updateHtml': function (target, htmlCode) {
