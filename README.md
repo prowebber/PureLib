@@ -35,8 +35,20 @@ commands.  Since file size and performance are the main goals of PureLib, it doe
 * Do not use leading hashes before HTML IDs (use `nav_footer` instead of `#nav_footer`)
 * Do not use leading periods before CSS class names (use `green` instead of `.green`)
 
-### Editing via DOM _(l.dom)_
-These functions expect to receive a DOM value as an argument.  Call in JavaScript with `l.dom.{command(args)}`.
+### PureLib Commands
+These functions expect to receive a DOM value or HTML ID as an argument.
+
+**Examples**
+```js
+
+// Add the CSS class .animate to an element by HTML ID
+l.addClass('sidebar_footer', 'animate');
+
+// Add the CSS class .animate to an element by JavaScript DOM
+let sideBarDom = l.getDom('sidebar_footer');
+l.removeClass(sideBarDom, 'animate');
+
+```
 
 | Command                                           | Action                                                                              |
 |:--------------------------------------------------|:------------------------------------------------------------------------------------|
