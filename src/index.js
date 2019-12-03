@@ -42,8 +42,8 @@ let pureLib = (function() {
          * Add the specified class to all elements inside a DOM
          *
          * @param target {Object|string}    DOM object or HTML element ID
-         * @param selector      The selector text to match
-         * @param className     The class to add
+         * @param selector {string}         The selector query/text to match
+         * @param className {string}        The class name to add (do not use leading periods '.' in class names)
          */
         'addClassToAll': function(target, selector, className){
             let dom = ctd(target);                                  // Get the DOM
@@ -59,8 +59,8 @@ let pureLib = (function() {
          *  - Searches up the DOM tree
          *
          * @param target {Object|string}    DOM object or HTML element ID
-         * @param selector      e.g. images, .classname, #id
-         * @returns {*}         The DOM of the matched element
+         * @param selector {string}         The selector query/text to match
+         * @returns {Object}                The DOM of the matched element
          */
         'closestEl': function (target, selector) {
             let dom = ctd(target);                                  // Get the DOM
@@ -71,8 +71,8 @@ let pureLib = (function() {
          * Get the data-attribute value for the specified DOM
          *
          * @param target {Object|string}    DOM object or HTML element ID
-         * @param dataAttribute                     The data attribute to get the value of
-         * @returns {(string | null) | string}      The data value
+         * @param dataAttribute {string}    The data attribute to get the value of
+         * @returns {string | null}         The attribute value
          */
         'dataAttr': function (target, dataAttribute) {
             let dom = ctd(target);                                  // Get the DOM
@@ -84,8 +84,8 @@ let pureLib = (function() {
          * Get the specified data attribute for the selection option in an HTML dropdown menu
          *
          * @param target {Object|string}    DOM object or HTML element ID
-         * @param dataAttribute         The name of the data attribute
-         * @returns {string | null}     The value of the data attribute
+         * @param dataAttribute {string}    The data attribute to get the value of
+         * @returns {string | null}         The value of the data attribute
          */
         'dropdownDataAttr': function(target, dataAttribute){
             let dom = ctd(target);                                  // Get the DOM
@@ -98,7 +98,7 @@ let pureLib = (function() {
          * Get the text value for the selected option in an HTML dropdown menu
          *
          * @param target {Object|string}    DOM object or HTML element ID
-         * @returns {*}     The text value
+         * @returns {string}                The text value
          */
         'dropdownTextValue': function (target) {
             let dom = ctd(target);                                  // Get the DOM
@@ -110,7 +110,7 @@ let pureLib = (function() {
          * Get the value of the currently selected option in an HTML dropdown menu
          *
          * @param target {Object|string}    DOM object or HTML element ID
-         * @returns {string}        The value of the selected element
+         * @returns {string}                The value of the selected element
          */
         'dropdownValue': function (target) {
             let dom = ctd(target);                                  // Get the DOM
@@ -120,9 +120,9 @@ let pureLib = (function() {
         /**
          * Return the DOM of the element matched within the parent (equivalent of jQuery find)
          *
-         * @param parentDom         The element DOM to start with
-         * @param selector          The class/tag/ID to find
-         * @returns {*}
+         * @param parentDom {Object|string} DOM object or HTML element ID to search within
+         * @param selector {string}         The selector query/text to match
+         * @returns {Object}                JavaScript DOM object
          */
         'findBySelector': function (parentTarget, selector) {
             let parentDom = ctd(parentTarget);                      // Get the DOM
@@ -134,7 +134,8 @@ let pureLib = (function() {
          * Return the DOM of all elements matched within the parent (equivalent of jQuery find)
          *
          * @param target {Object|string}    DOM object or HTML element ID
-         * @param selector      The selector text to match
+         * @param selector {string}         The selector query/text to match
+         * @returns {Object}                JavaScript DOM object(s)
          */
         'findAllBySelector': function (target, selector) {
             let dom = ctd(target);                                  // Get the DOM
@@ -146,8 +147,8 @@ let pureLib = (function() {
          * Get an element's distance from the top of the document
          *  - Iterates through all elements above the DOM to get an accurate value in px
          *
-         * @param containerDom          The container to measure
-         * @returns {number}            The distance from top
+         * @param containerTarget {Object|string}   DOM object or HTML element ID of the container to measure from
+         * @returns {number}                        The distance from top of the document to the top of the container in pixels
          */
         'getDistanceFromTop': function(containerTarget){
             let containerDom = ctd(containerTarget);
@@ -164,7 +165,7 @@ let pureLib = (function() {
 
         /**
          * Return the DOM of an element
-         * @param target {Object|string}    DOM object or HTML element ID
+         * @param target {Object|string}        DOM object or HTML element ID
          * @returns {*|HTMLElement|undefined}
          */
         'getDom': function(target){
@@ -176,10 +177,10 @@ let pureLib = (function() {
          * Get the value of an input
          *
          * @param target {Object|string}    DOM object or HTML element ID
-         * @returns {*}			The value of the input
+         * @returns {*}			            The value of the input
          */
         'getInputValue': function(target){
-            let dom = ctd(target);                                  // Get the DOM
+            let dom = ctd(target);          // Get the DOM
             return dom.value;
         },
 
@@ -187,9 +188,9 @@ let pureLib = (function() {
         /**
          * Returns the coordinates (in px) of the user's mouse on the screen relative to the container they are closest to
          *
-         * @param containerDom                          The DOM of the container
-         * @param e                                     JavaScript event data
-         * @returns {{top: number, left: number}}
+         * @param containerTarget {Object|string}   DOM object or HTML element ID the coordinates will be measured from
+         * @param e                                 JavaScript event data
+         * @returns {Object}                        Object of coordinate values
          */
         'getMouseCoordinates': function (containerTarget, e) {
             let containerDom = ctd(containerTarget);
@@ -240,7 +241,7 @@ let pureLib = (function() {
          * Gets the text value of an element (e.g. <div>Test</div> would return 'test')
          *
          * @param target {Object|string}    DOM object or HTML element ID
-         * @returns {string}        The text value inside that element
+         * @returns {string}                The text value inside that element
          */
         'getTextValue': function (target) {
             let dom = ctd(target);                                  // Get the DOM
@@ -252,8 +253,8 @@ let pureLib = (function() {
          * Determine if a class exists
          *
          * @param target {Object|string}    DOM object or HTML element ID
-         * @param className         The class to search for
-         * @returns {boolean}       True if class exists; false otherwise
+         * @param className {string}        The class to search for
+         * @returns {boolean}               True if class exists; false otherwise
          */
         'hasClass': function (target, className) {
             let dom = ctd(target);                                  // Get the DOM
@@ -265,18 +266,18 @@ let pureLib = (function() {
         /**
          * Hide an element from the screen
          *
-         * @param target {Object|string}    DOM object or HTML element ID
+         * @param target {Object|string}        DOM object or HTML element ID
          */
         'hide': function (target) {
-            let dom = ctd(target);                                  // Get the DOM
-            dom.classList.add('hide');                              // Add the 'hide' class
+            let dom = ctd(target);              // Get the DOM
+            dom.classList.add('hide');          // Add the 'hide' class
         },
 
         /**
          * Find and hide all matching elements
          * - Add a css .hide class to each matching element
          *
-         * @param selector {string}  The selector syntax/query
+         * @param selector {string}     The selector query/text to match
          */
         'hideAllBySelector': function(selector){
             let elem = document.querySelectorAll(selector);
@@ -290,8 +291,8 @@ let pureLib = (function() {
         /**
          * Move an element after the end tag of another element
          *
-         * @param moveThisDom           The element you want to move
-         * @param placeAfterDom         Where you want to place the new element
+         * @param moveThisTarget {Object|string}       DOM object or HTML element ID you want moved
+         * @param placeAfterTarget {Object|string}     DOM object or HTML element ID you want the element moved to
          */
         'moveAfter': function (moveThisTarget, placeAfterTarget) {
             let moveThisDom = ctd(moveThisTarget);              // Get the DOM
@@ -305,8 +306,8 @@ let pureLib = (function() {
          *  - Before: <div>##Target##</div>
          *  - After:  ##Target##<div></div>
          *
-         * @param moveThisDom           The element you want to move
-         * @param placeBeforeDom        Where you want to place the new element
+         * @param moveThisTarget           DOM object or HTML element ID you want to move
+         * @param placeBeforeTarget        DOM object or HTML element ID you want the element moved to
          */
         'moveBefore': function (moveThisTarget, placeBeforeTarget) {
             let moveThisDom = ctd(moveThisTarget);              // Get the DOM
@@ -320,8 +321,8 @@ let pureLib = (function() {
          * - Before: <div>##Target##Content</div>
          * - After:  <div>Content##Target##</div>
          *
-         * @param moveThisDom       The element to move (DOM)
-         * @param placeInsideDom    Where you want to place the element (DOM)
+         * @param moveThisTarget       DOM object or HTML element ID you want to move
+         * @param placeInsideTarget    DOM object or HTML element ID you want the element moved to
          */
         'moveInsideToBottom': function (moveThisTarget, placeInsideTarget) {
             let moveThisDom = ctd(moveThisTarget);              // Get the DOM
@@ -335,8 +336,8 @@ let pureLib = (function() {
          * - Before: <div>Content##Target##</div>
          * - After:  <div>##Target##Content</div>
          *
-         * @param moveThisDom       The element to move (DOM)
-         * @param placeInsideDom    Where you want to place the element (DOM)
+         * @param moveThisTarget       DOM object or HTML element ID you want to move
+         * @param placeInsideTarget    DOM object or HTML element ID you want the element moved to
          */
         'moveInsideToTop': function (moveThisTarget, placeInsideTarget) {
             let moveThisDom = ctd(moveThisTarget);              // Get the DOM
@@ -364,13 +365,11 @@ let pureLib = (function() {
          */
         'removeClass': function (target, className) {
             let dom = ctd(target);                                  // Get the DOM
-            if(Array.isArray(className)){                           // If it was passed an array of classes to remove
-                for(const cName of className){                      // Iterate through each item
-                    dom.classList.remove(cName);                    // Remove the class
+
+            if(className.constructor === Array){                    // If it was passed an array of classes to remove
+                for (let i = 0; i < className.length; i++) {        // Loop through each class name
+                    dom.classList.remove(className[i]);          // Remove the class
                 }
-            }
-            else{                                                   // If a string
-                dom.classList.remove(className);
             }
         },
 
@@ -379,7 +378,7 @@ let pureLib = (function() {
          * Remove the specified class from all elements inside a DOM
          *
          * @param target {Object|string}    DOM object or HTML element ID
-         * @param selector      The selector text to match
+         * @param selector {string}     The selector query/text to match
          * @param className     The class to remove
          */
         'removeClassFromAll': function (target, selector, className) {
