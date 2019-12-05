@@ -5,9 +5,10 @@
   "main": "src/index.js",
   "scripts": {
     "build": "babel src/index.js -o build/purelib.js && terser build/purelib.js -c -m keep_classnames -o build/purelib.min.js",
-    "build-tiny": "babel src/index-new.js -o build/purelib-polyfill.js && terser build/purelib-polyfill.js -c -m reserved=['addClass'] -o build/purelib-new.min.js",
+    "build-tiny": "babel src/index.js -o build/purelib.js && terser build/purelib.js -c -m reserved=['addClass'] -o build/purelib-new.min.js",
     "build-old": "rollup -c && terser build/purelib.js -c -o build/purelib.min.js",
-    "test": "test"
+    "test_a": "rollup -c test/iife_a/rollup.config.test_a.js",
+    "tiny": "terser build/purelib.js -c -m -o build/purelib-new.min.js"
   },
   "author": "",
   "license": "ISC",

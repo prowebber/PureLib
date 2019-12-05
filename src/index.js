@@ -6,7 +6,15 @@ let pureLib = (function() {
      * !! Important - Do not place this below the "use strict" or it will break JetBrains auto-complete
      */
 
-    function ctd(target) {
+    /**
+     *
+     * @param target
+     * @param checkExists {bool}    True if you want to return false if the DOM does NOT exist
+     * @returns {HTMLElement|{nodeName}|*}
+     */
+    function ctd(target, checkExists) {
+        if(typeof checkExists === "undefined") checkExists = false;     // Set to false if not specified in argument
+
         // If this is a DOM object, return the DOM
         if (target.nodeName)  return target;
 
@@ -18,8 +26,14 @@ let pureLib = (function() {
             }
         }
 
+
         // If the target cannot be found
-        throw new Error('PureLib cannot find element on page');
+        if(checkExists){                                                // If checking to see if the target exists
+            return false;                                               // Return False since it was not found
+        }
+        else{                                                           // If attempting to fetch the target
+            throw new Error('PureLib cannot find element on page');     // Throw an error
+        }
     }
 
     function L(){}                          // Create an empty function
@@ -63,8 +77,20 @@ let pureLib = (function() {
          * @returns {Object}                The DOM of the matched element
          */
         'closestEl': function (target, selector) {
+            let dom = ctd(target, true);                                  // Get the DOM
+
+            return (dom) ? dom.closest(selector) : false;
+        },
+
+        /**
+         * Get the value of the specified CSS property for an element
+         *
+         * @param target {Object|string}    DOM object or HTML element ID
+         * @param cssPropName {string}      The CSS property (e.g. 'display', 'background-color', etc.)
+         */
+        'cssValue': function(target, cssPropName){
             let dom = ctd(target);                                  // Get the DOM
-            return dom.closest(selector);
+            return window.getComputedStyle(dom).getPropertyValue(cssPropName);
         },
 
         /**
@@ -118,7 +144,7 @@ let pureLib = (function() {
         },
 
         /**
-         * Return the DOM of the element matched within the parent (equivalent of jQuery find)
+         * Return the DOM of the first element matched within the parent (equivalent of jQuery find)
          *
          * @param parentDom {Object|string} DOM object or HTML element ID to search within
          * @param selector {string}         The selector query/text to match
@@ -133,12 +159,12 @@ let pureLib = (function() {
         /**
          * Return the DOM of all elements matched within the parent (equivalent of jQuery find)
          *
-         * @param target {Object|string}    DOM object or HTML element ID
-         * @param selector {string}         The selector query/text to match
-         * @returns {Object}                JavaScript DOM object(s)
+         * @param parentTarget {Object|string}      DOM object or HTML element ID to search within
+         * @param selector {string}                 The selector query/text to match
+         * @returns {NodeList}                      NodeList containing matching Element nodes
          */
-        'findAllBySelector': function (target, selector) {
-            let dom = ctd(target);                                  // Get the DOM
+        'findAllBySelector': function (parentTarget, selector) {
+            let dom = ctd(parentTarget);                            // Get the DOM
             return dom.querySelectorAll(selector);                  // Find all the matching elements inside the dom
         },
 
@@ -169,7 +195,7 @@ let pureLib = (function() {
          * @returns {*|HTMLElement|undefined}
          */
         'getDom': function(target){
-            return ctd(target);
+            return ctd(target, true);
         },
 
 
@@ -184,56 +210,17 @@ let pureLib = (function() {
             return dom.value;
         },
 
-
         /**
-         * Returns the coordinates (in px) of the user's mouse on the screen relative to the container they are closest to
-         *
-         * @param containerTarget {Object|string}   DOM object or HTML element ID the coordinates will be measured from
-         * @param e                                 JavaScript event data
-         * @returns {Object}                        Object of coordinate values
+         * Get the 'key code' for keyboard actions
+         * @param e {Object}  JavaScript event
+         * @returns {string}  The keycode
          */
-        'getMouseCoordinates': function (containerTarget, e) {
-            let containerDom = ctd(containerTarget);
-            let client = containerDom.getBoundingClientRect();
+        'getKeyCode': function(e){
+            let keyCode = null;
+            if(e.key !== undefined) keyCode = e.key;
+            else if(e.code !== undefined) keyCode = e.code;
 
-            let xPosition = 0;
-            let yPosition = 0;
-
-            let coordinates = {
-                'container': {
-                    'top': containerDom.offsetTop,                  // The distance of the nearest container from the top of the page in px
-                    'left': containerDom.offsetLeft,                // The distance of the nearest container from the left of the page in px
-                },
-                'doc': {
-                    'top': e.pageY,                                 // The distance of the user's cursor from the top of the page in px
-                    'left': e.pageX                                 // The distance of the user's cursor from the left of the page in px
-                },
-                'client': {
-                    'top': client.top,
-                    'left': client.left,
-                    'height': client.height,
-                },
-                'window': {
-                    'top': window.pageYOffset,
-                    'left': window.pageXOffset,
-                },
-                'computed':{
-                    'top': yPosition,
-                    'left': xPosition,
-                }
-            };
-
-            // Loop through the parent nodes until you reach the top of the page (since the offset top will stop a parents with position relative/absolute)
-            while(containerDom){
-                xPosition += (containerDom.offsetLeft - containerDom.scrollLeft + containerDom.clientLeft);
-                yPosition += (containerDom.offsetTop - containerDom.scrollTop + containerDom.clientTop);
-                containerDom = containerDom.offsetParent;
-            }
-
-            coordinates.computed.top = yPosition;
-            coordinates.computed.left = xPosition;
-
-            return coordinates;
+            return keyCode;
         },
 
 
@@ -285,6 +272,17 @@ let pureLib = (function() {
             for (let i = 0; i < elem.length; i++) {             // Loop through each element
                 elem[i].classList.add('hide');                  // Add the 'hide' class
             }
+        },
+
+
+        /**
+         * Checks if a value is in an array
+         * @param haystack  The array
+         * @param needle    The value being searched
+         * @returns {boolean} True if the value is in the array
+         */
+        'inArray': function(haystack, needle){
+            return haystack.indexOf(needle) > -1;
         },
 
 
@@ -368,8 +366,11 @@ let pureLib = (function() {
 
             if(className.constructor === Array){                    // If it was passed an array of classes to remove
                 for (let i = 0; i < className.length; i++) {        // Loop through each class name
-                    dom.classList.remove(className[i]);          // Remove the class
+                    dom.classList.remove(className[i]);             // Remove the class
                 }
+            }
+            else{
+                dom.classList.remove(className);                    // Remove the class
             }
         },
 
@@ -453,7 +454,7 @@ let pureLib = (function() {
         },
 
 
-        /*
+        /**
             Access validation commands
             @property validate
          */

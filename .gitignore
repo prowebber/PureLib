@@ -3,3 +3,5 @@
 .idea/*
 !.idea/scopes
 lib/**/.idea
+test/*
+f_ref/*
