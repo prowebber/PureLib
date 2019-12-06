@@ -100,3 +100,25 @@ Below are examples of syntax to use for query selector strings.  You can see mor
 2. Click 'Add...' to add a 3rd party library
 3. Name the library 'PureLib' and select the full-size `purelib.js` file in the '/build' directory
 4. Save and apply the settings
+
+## Function Examples
+
+### addClass(target, className)
+Adds the specified CSS class to the target element.
+
+#### Arguments
+
+| Name        | Type                                 | Info                                                                  |
+|:------------|:-------------------------------------|:----------------------------------------------------------------------|
+| `target`    | _Element object_ or HTML ID _string_ | The target element. Use a string to match the HTML ID of an element.  |
+| `className` | _string_                             | The class name to add (do not use leading periods '.' in class names) |
+
+#### Example
+```js
+// Add the CSS class .animate to an element with the ID 'sidebar_footer'
+l.addClass('sidebar_footer', 'animate');
+
+// Add the CSS class .animate to an element object
+let target = l.getDom('sidebar_footer');    // Get the element
+l.removeClass(target, 'animate');
+```
