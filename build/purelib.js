@@ -17,7 +17,7 @@ var pureLib = function () {
     if (typeof checkExists === "undefined") checkExists = false; // Set to false if not specified in argument
     // If this is a DOM object, return the DOM
 
-    if (target.nodeName) return target; // If this is a string reference
+    if (target && target.nodeName) return target; // If this is a string reference
 
     if (typeof target === 'string' || target instanceof String) {
       var dom = document.getElementById(target); // See if the string is an element's HTML ID
@@ -84,7 +84,7 @@ var pureLib = function () {
     'closestEl': function closestEl(target, selector) {
       var dom = ctd(target, true); // Get the DOM
 
-      return dom ? dom.closest(selector) : false; // return dom.closest(selector);
+      return dom ? dom.closest(selector) : false;
     },
 
     /**

@@ -16,7 +16,7 @@ let pureLib = (function() {
         if(typeof checkExists === "undefined") checkExists = false;     // Set to false if not specified in argument
 
         // If this is a DOM object, return the DOM
-        if (target.nodeName)  return target;
+        if (target && target.nodeName)  return target;
 
         // If this is a string reference
         if (typeof target === 'string' || target instanceof String) {

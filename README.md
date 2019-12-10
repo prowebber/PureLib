@@ -9,7 +9,7 @@ commands.  Since file size and performance are the main goals of PureLib, it doe
 * Babel Polyfill supports top 95% ±1% of browsers. [See the list of supported browsers here](https://browserl.ist/?q=last+1+version%2C+not+dead%2C+%3E+0.2%25)
 * Provides 30 shortcuts to commonly used JavaScript actions
 * Final script is 1.5KB in size
-* Can reference functions by HTML ID or by JavaScript DOM object
+* Target items by passing the [Element object](https://developer.mozilla.org/en-US/docs/Web/API/Element) or the [HTML ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) to the function.
 
 
 ## Usage
@@ -108,10 +108,10 @@ Adds the specified CSS class to the target element.
 
 #### Arguments
 
-| Name        | Type                                 | Info                                                                  |
-|:------------|:-------------------------------------|:----------------------------------------------------------------------|
-| `target`    | _Element object_ or HTML ID _string_ | The target element. Use a string to match the HTML ID of an element.  |
-| `className` | _string_                             | The class name to add (do not use leading periods '.' in class names) |
+| Name        | Type                             | Details                                                                          |
+|:------------|:---------------------------------|:---------------------------------------------------------------------------------|
+| `target`    | {_Element object_} or {_string_} | The target element. Passing a {_string_} will find and target the element by ID. |
+| `className` | _string_                         | The class name to add (do not use leading periods '.' in class names)            |
 
 #### Example
 ```js
