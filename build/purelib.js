@@ -295,6 +295,27 @@ var pureLib = function () {
     },
 
     /**
+     * Checks if a JavaScript object is empty or not
+     *
+     * @param jsObject {Object|Array}   The JS Object you want to test
+     * @returns {boolean}               True if empty; False if not empty OR does not exist
+     */
+    'isEmpty': function isEmpty(jsObject) {
+      // If the jsObject is not empty OR if it exists
+      if (!!jsObject) {
+        if (jsObject.constructor === Array) {
+          // If it is an Array
+          return !!jsObject.length; // Return true if empty
+        } else if (jsObject.constructor === Object) {
+          // If it is an Object
+          return Object.keys(jsObject).length === 0; // Return True if empty
+        }
+      }
+
+      return false; // Default
+    },
+
+    /**
      * Move an element after the end tag of another element
      *
      * @param moveThisTarget {Object|string}       DOM object or HTML element ID you want moved
