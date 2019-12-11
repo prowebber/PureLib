@@ -51,33 +51,42 @@ l.removeClass(sideBarDom, 'animate');
 
 ```
 
-| Command                                           | Action                                                                             |
-|:--------------------------------------------------|:-----------------------------------------------------------------------------------|
-| `addClass(target, className)`                     | Add the specified CSS class to the specified DOM element                           |
-| `addClassToAll(target, selector, className)`      | Add the specified CSS class to all matched elements inside the DOM                 |
-| `closestEl(target, selector)`                     | Traverse up DOM tree and return first element that matches the selector            |
-| `dataAttr(target, dataAttribute)`                 | Get the data-attribute value for the specified DOM                                 |
-| `dropdownDataAttr(target, dataAttribute)`         | Get the data-attribute value for the selected option in a HTML select dropdown     |
-| `dropdownTextValue(target)`                       | Get the text value of the selected option in an HTML dropdown menu                 |
-| `dropdownValue(target)`                           | Get the value of the currently selected HTML dropdown option                       |
-| `findAllBySelector(target, selector)`             | Search the descendants of an element and return the DOM of all matching elements   |
-| `findBySelector(parentDom, selector)`             | Search the descendants of an element and return the first matching DOM             |
-| `getDistanceFromTop(containerDom)`                | Get the Y-position in pixels from the specified DOM to the top of the document     |
-| `getDom(target)`                                  | Return the DOM of the target.  Returns _FALSE_ the DOM does not exist on the page. |
-| `getMouseCoordinates(containerDom, e)`            | Return all mouse coordinates in pixels relative to the specified container         |
-| `getTextValue(target)`                            | Return the text content within the specified _DOM_                                 |
-| `hasClass(target, className)`                     | Return TRUE if the DOM contains the specified CSS class                            |
-| `hide(target,)`                                   | Add the `hide` CSS class to the element (hiding the element)                       |
-| `moveAfter(moveThisDom, placeAfterDom)`           | Moves the specified DOM after the end tag of the specified DOM                     |
-| `moveBefore(moveThisDom, placeBeforeDom)`         | Moves the specified DOM before the starting tag of the specified DOM               |
-| `moveInsideToBottom(moveThisDom, placeInsideDom)` | Moves the specified DOM before the end tag of the specified DOM                    |
-| `moveInsideToTop(moveThisDom, placeInsideDom)`    | Moves the specified DOM after the starting tag of the specified DOM                |
-| `remove(target,)`                                 | Removes the specified element from the DOM                                         |
-| `removeClass(target, className)`                  | Removes the specified CSS class from the DOM                                       |
-| `removeClassFromAll(target, selector, className)` | Removes the specified CSS class from all the elements                              |
-| `setDataAttribute(target, dataAttribute, value)`  | Set/update a data attribute value for the specified DOM element                    |
-| `show(target)`                                    | Remove the `hide` CSS class from the element (shows the element)                   |
-| `updateHtml(target, htmlCode)`                    | Replaces the HTML inside the DOM                                                   |
+| Command                       | Action                                                                                  |
+|:------------------------------|:----------------------------------------------------------------------------------------|
+| `addClass(a, b)`              | Add the specified CSS class to the target Element                                       |
+| `addClassToAll(a, b, c)`      | Add the specified CSS class to all Elements that match the selector                     |
+| `closestEl(a, b)`             | Starting at the target, traverse up the parents until it finds the matching Element     |
+| `cssValue(a, b)`              | Get the CSS property value for the target Element                                       |
+| `dataAttr(a, b)`              | Get a data-attribute value from the target Element                                      |
+| `dropdownDataAttr(a, b)`      | Get a data-attribute value for the currently selected option in an HTML dropdown/select |
+| `dropdownTextValue(a)`        | Get the text value for the currently selected option in an HTML dropdown/select         |
+| `dropdownValue(a)`            | Get the field value of the currently selected option in an HTML dropdown/select         |
+| `findBySelector(a, b)`        | Traverse through children and return the first Element that matches the selector        |
+| `findAllBySelector(a, b`      | Traverse through children and return all Elements that matches the selector             |
+| `getDistanceFromTop(a)`       | Get the distance in pixels from the target to the top of the document                   |
+| `getDom(a)`                   | Return the DOM Object of an element                                                     |
+| `getInputValue(a)`            | Return the value of an HTML input field                                                 |
+| `getKeyCode(a)`               | Return the 'key code' for pressed keys/keyboard actions                                 |
+| `getTextValue(a)`             | Gets the text value of an Element (e.g. `<div>Test</div>` would return 'test')          |
+| `hasClass(a, b)`              | Return True if the specified CSS class exists in the target Element                     |
+| `hide(a)`                     | Hide an element from the screen                                                         |
+| `hideAllBySelector(a)`        | Find and hide all elements that match the selector                                      |
+| `inArray(a, b)`               | Returns True if the specified value exists in an array                                  |
+| `isEmpty(a)`                  | Returns True if a Object, Array, or String are empty                                    |
+| `moveAfter(a, b)`             | Move an Element after the closing HTML tag of another Element                           |
+| `moveBefore(a, b)`            | Move an Element before the opening HTML tag of another Element                          |
+| `moveInsideToBottom(a, b)`    | Move an Element before the closing HTML tag of another Element                          |
+| `moveInsideToTop(a, b)`       | Move an Element after the opening HTML tag of another Element                           |
+| `remove(a)`                   | Removes the target Element from the DOM                                                 |
+| `removeClass(a, b)`           | Remove the specified CSS class(es) from the target Element                              |
+| `removeClassFromAll(a, b, c)` | Remove the specified CSS class from all Elements that match a selector                  |
+| `resetForm(a)`                | Resets the specified HTML form, clears all field inputs                                 |
+| `setDataAttr(a, b, c)`        | Set/update a data-attribute value for the specified target Element                      |
+| `show(a)`                     | Show the target Element (if it was previously hidden)                                   |
+| `showAllBySelector(a)`        | Find and show all Elements that match the selector                                      |
+| `updateHtml(a, b)`            | Replace the HTML inside the target Element                                              |
+| `validate.isJson(a)`          | Returns True if the data is valid Json                                                  |
+
 
 ## Examples
 

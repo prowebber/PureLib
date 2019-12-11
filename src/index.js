@@ -42,7 +42,7 @@ let pureLib = (function() {
     L.prototype = {
 
         /**
-         * Add the specified CSS class to the specified DOM element
+         * Add the specified CSS class to the target Element
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @param className {string}        The class name to add (do not use leading periods '.' in class names)
@@ -53,7 +53,7 @@ let pureLib = (function() {
         },
 
         /**
-         * Add the specified class to all elements inside a DOM
+         * Add the specified CSS class to all Elements that match the selector
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @param selector {string}         The selector query/text to match
@@ -69,8 +69,9 @@ let pureLib = (function() {
         },
 
         /**
-         * Finds the closest element by the specified selector and returns the element's DOM
+         * Starting at the target, traverse up the parents until it finds the matching Element
          *  - Searches up the DOM tree
+         *  - Returns matching element
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @param selector {string}         The selector query/text to match
@@ -83,7 +84,7 @@ let pureLib = (function() {
         },
 
         /**
-         * Get the value of the specified CSS property for an element
+         * Get the CSS property value for the target Element
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @param cssPropName {string}      The CSS property (e.g. 'display', 'background-color', etc.)
@@ -94,7 +95,7 @@ let pureLib = (function() {
         },
 
         /**
-         * Get the data-attribute value for the specified DOM
+         * Get a data-attribute value from the target Element
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @param dataAttribute {string}    The data attribute to get the value of
@@ -107,7 +108,7 @@ let pureLib = (function() {
         },
 
         /**
-         * Get the specified data attribute for the selection option in an HTML dropdown menu
+         * Get a data-attribute value for the currently selected option in an HTML dropdown/select
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @param dataAttribute {string}    The data attribute to get the value of
@@ -121,7 +122,7 @@ let pureLib = (function() {
         },
 
         /**
-         * Get the text value for the selected option in an HTML dropdown menu
+         * Get the text value for the currently selected option in an HTML dropdown/select
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @returns {string}                The text value
@@ -133,7 +134,7 @@ let pureLib = (function() {
         },
 
         /**
-         * Get the value of the currently selected option in an HTML dropdown menu
+         * Get the field value of the currently selected option in an HTML dropdown/select
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @returns {string}                The value of the selected element
@@ -144,7 +145,9 @@ let pureLib = (function() {
         },
 
         /**
-         * Return the DOM of the first element matched within the parent (equivalent of jQuery find)
+         * Traverse through children and return the first Element that matches the selector
+         * - Traverses through child nodes
+         * - Equivalent of jQuery find
          *
          * @param parentDom {Object|string} DOM object or HTML element ID to search within
          * @param selector {string}         The selector query/text to match
@@ -157,7 +160,9 @@ let pureLib = (function() {
 
 
         /**
-         * Return the DOM of all elements matched within the parent (equivalent of jQuery find)
+         * Traverse through children and return all Elements that matches the selector
+         * - Traverses through child nodes
+         * - Equivalent of jQuery find
          *
          * @param parentTarget {Object|string}      DOM object or HTML element ID to search within
          * @param selector {string}                 The selector query/text to match
@@ -170,7 +175,7 @@ let pureLib = (function() {
 
 
         /**
-         * Get an element's distance from the top of the document
+         * Get the distance in pixels from the target to the top of the document
          *  - Iterates through all elements above the DOM to get an accurate value in px
          *
          * @param containerTarget {Object|string}   DOM object or HTML element ID of the container to measure from
@@ -190,7 +195,7 @@ let pureLib = (function() {
         },
 
         /**
-         * Return the DOM of an element
+         * Return the DOM Object of an element
          * @param target {Object|string}        DOM object or HTML element ID
          * @returns {*|HTMLElement|undefined}
          */
@@ -200,7 +205,7 @@ let pureLib = (function() {
 
 
         /**
-         * Get the value of an input
+         * Return the value of an HTML input field
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @returns {*}			            The value of the input
@@ -211,7 +216,8 @@ let pureLib = (function() {
         },
 
         /**
-         * Get the 'key code' for keyboard actions
+         * Return the 'key code' for pressed keys/keyboard actions
+         *
          * @param e {Object}  JavaScript event
          * @returns {string}  The keycode
          */
@@ -225,7 +231,7 @@ let pureLib = (function() {
 
 
         /**
-         * Gets the text value of an element (e.g. <div>Test</div> would return 'test')
+         * Gets the text value of an Element (e.g. <div>Test</div> would return 'test')
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @returns {string}                The text value inside that element
@@ -237,7 +243,7 @@ let pureLib = (function() {
 
 
         /**
-         * Determine if a class exists
+         * Return True if the specified CSS class exists in the target Element
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @param className {string}        The class to search for
@@ -261,7 +267,7 @@ let pureLib = (function() {
         },
 
         /**
-         * Find and hide all matching elements
+         * Find and hide all elements that match the selector
          * - Add a css .hide class to each matching element
          *
          * @param selector {string}     The selector query/text to match
@@ -276,7 +282,8 @@ let pureLib = (function() {
 
 
         /**
-         * Checks if a value is in an array
+         * Return True if the specified value exists in an array
+         *
          * @param haystack  The array
          * @param needle    The value being searched
          * @returns {boolean} True if the value is in the array
@@ -287,27 +294,30 @@ let pureLib = (function() {
 
 
         /**
-         * Checks if a JavaScript object is empty or not
+         * Returns True if a Object, Array, or String are empty
          *
-         * @param jsObject {Object|Array}   The JS Object you want to test
-         * @returns {boolean}               True if empty; False if not empty OR does not exist
+         * @param jsObject {Object|Array|String}   The JS Object you want to test
+         * @returns {boolean}                       True if empty or does not exist; False if not empty
          */
         'isEmpty': function(jsObject){
             // If the jsObject is not empty OR if it exists
-            if(!!jsObject){
+            if(!!jsObject){                                         // If the object exists
                 if(jsObject.constructor === Array){                 // If it is an Array
                     return !! jsObject.length;                      // Return true if empty
                 }
                 else if(jsObject.constructor === Object){           // If it is an Object
                     return Object.keys(jsObject).length === 0;      // Return True if empty
                 }
+                else if(typeof jsObject === 'string'){
+                    return (!jsObject || 0 === jsObject.length);    // Return true if there is not a string or if the string has zero length
+                }
             }
-            return false;                                           // Default
+            return true;                                           // Default
         },
 
 
         /**
-         * Move an element after the end tag of another element
+         * Move an Element after the closing HTML tag of another Element
          *
          * @param moveThisTarget {Object|string}       DOM object or HTML element ID you want moved
          * @param placeAfterTarget {Object|string}     DOM object or HTML element ID you want the element moved to
@@ -320,7 +330,7 @@ let pureLib = (function() {
 
 
         /**
-         * Move an element before the starting tag of another element
+         * Move an Element before the opening HTML tag of another Element
          *  - Before: <div>##Target##</div>
          *  - After:  ##Target##<div></div>
          *
@@ -335,7 +345,8 @@ let pureLib = (function() {
 
 
         /**
-         * Move an element before the ending tag of another element (AKA - append)
+         * Move an Element before the closing HTML tag of another Element
+         * - AKA: append
          * - Before: <div>##Target##Content</div>
          * - After:  <div>Content##Target##</div>
          *
@@ -350,7 +361,8 @@ let pureLib = (function() {
 
 
         /**
-         * Move an element after the starting tag of another element (AKA - prepend)
+         * Move an Element after the opening HTML tag of another Element
+         * - AKA: prepend
          * - Before: <div>Content##Target##</div>
          * - After:  <div>##Target##Content</div>
          *
@@ -365,7 +377,7 @@ let pureLib = (function() {
 
 
         /**
-         * Removes an element from the DOM
+         * Removes the target Element from the DOM
          *
          * @param target {Object|string}    DOM object or HTML element ID
          */
@@ -376,7 +388,7 @@ let pureLib = (function() {
 
 
         /**
-         * Remove the specified class from a DOM element
+         * Remove the specified CSS class(es) from the target Element
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @param className     (string|array): string - The class to remove, Array - a list of classes to remove
@@ -396,7 +408,7 @@ let pureLib = (function() {
 
 
         /**
-         * Remove the specified class from all elements inside a DOM
+         * Remove the specified CSS class from all Elements that match a selector
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @param selector {string}     The selector query/text to match
@@ -413,7 +425,7 @@ let pureLib = (function() {
 
 
         /**
-         * Resets a form, clears all field inputs
+         * Resets the specified HTML form, clears all field inputs
          *
          * @param target {Object|string}    DOM object or HTML element ID
          */
@@ -424,7 +436,7 @@ let pureLib = (function() {
 
 
         /**
-         * Set/update a data-attribute value for a DOM element
+         * Set/update a data-attribute value for the specified target Element
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @param dataAttribute     The data attribute name
@@ -437,7 +449,7 @@ let pureLib = (function() {
 
 
         /**
-         * Show an element (if it was previously hidden)
+         * Show the target Element (if it was previously hidden)
          *
          * @param target {Object|string}    DOM object or HTML element ID
          */
@@ -448,7 +460,7 @@ let pureLib = (function() {
 
 
         /**
-         * Find and show all matching elements
+         * Find and show all Elements that match the selector
          * - Remove a css .hide class from each matching element
          *
          * @param selector {string}  The selector syntax/query
@@ -463,7 +475,7 @@ let pureLib = (function() {
 
 
         /**
-         * Replace the HTML inside the matching container
+         * Replace the HTML inside the target Element
          *
          * @param target {Object|string}    DOM object or HTML element ID
          * @param htmlCode
@@ -481,7 +493,8 @@ let pureLib = (function() {
         'validate': {
 
             /**
-             * Check the data to see if it is valid JSON
+             * Returns True if the data is valid Json
+             *
              * @param data {string}
              * @returns {boolean}       True if Json; False otherwise
              */

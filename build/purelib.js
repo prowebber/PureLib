@@ -297,22 +297,25 @@ var pureLib = function () {
     /**
      * Checks if a JavaScript object is empty or not
      *
-     * @param jsObject {Object|Array}   The JS Object you want to test
-     * @returns {boolean}               True if empty; False if not empty OR does not exist
+     * @param jsObject {Object|Array|String}   The JS Object you want to test
+     * @returns {boolean}                       True if empty or does not exist; False if not empty
      */
     'isEmpty': function isEmpty(jsObject) {
       // If the jsObject is not empty OR if it exists
       if (!!jsObject) {
+        // If the object exists
         if (jsObject.constructor === Array) {
           // If it is an Array
           return !!jsObject.length; // Return true if empty
         } else if (jsObject.constructor === Object) {
           // If it is an Object
           return Object.keys(jsObject).length === 0; // Return True if empty
+        } else if (typeof jsObject === 'string') {
+          return !jsObject || 0 === jsObject.length; // Return true if there is not a string or if the string has zero length
         }
       }
 
-      return false; // Default
+      return true; // Default
     },
 
     /**
