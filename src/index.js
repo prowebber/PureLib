@@ -4,11 +4,16 @@ import {valid} from "./validate";
 
 
 // Create an empty function to add modules to
-export default function l(){
+export default function P(){
 }
 
 
-l.prototype = {
+/**
+ * Doc References: https://devdocs.io/jsdoc/tags-param
+ * Version: 1.1
+ */
+
+P.prototype = {
     /**
      * Add the specified CSS class to the target Element
      *

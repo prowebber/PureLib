@@ -10,7 +10,7 @@ export default [
             file: 'build/purelib.js',
             footer: "var l = new pureLib();",
             format: 'iife',
-            name: 'l',
+            name: 'pure',
             sourcemap: false
         },
         plugins: [

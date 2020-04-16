@@ -1,4 +1,4 @@
-var l = (function () {
+var pure = (function () {
     'use strict';
 
     /**
@@ -73,8 +73,13 @@ var l = (function () {
       }
     };
 
-    function l() {}
-    l.prototype = {
+    function P() {}
+    /**
+     * Doc References: https://devdocs.io/jsdoc/tags-param
+     * Version: 1.1
+     */
+
+    P.prototype = {
       /**
        * Add the specified CSS class to the target Element
        *
@@ -536,7 +541,7 @@ var l = (function () {
 
     };
 
-    return l;
+    return P;
 
 }());
 var l = new pureLib();
