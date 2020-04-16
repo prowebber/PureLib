@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "build": "babel src/index.js -o build/purelib.js && terser build/purelib.js -c -m keep_classnames -o build/purelib.min.js",
+    "build-prev": "babel src/index.js -o build/purelib.js && terser build/purelib.js -c -m keep_classnames -o build/purelib.min.js",
+    "build": "rollup -c rollup.config.js && terser build/purelib.js -c -m keep_classnames -o build/purelib.min.js",
     "build-tiny": "babel src/index.js -o build/purelib.js && terser build/purelib.js -c -m reserved=['addClass'] -o build/purelib-new.min.js",
     "build-old": "rollup -c && terser build/purelib.js -c -o build/purelib.min.js",
     "test_a": "rollup -c test/iife_a/rollup.config.test_a.js",
