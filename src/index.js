@@ -1,7 +1,10 @@
+import {val} from './value/index';
+
 
 let pureLib = (function() {
     /**
      * Doc References: https://devdocs.io/jsdoc/tags-param
+     * Version: 1.1
      *
      * !! Important - Do not place this below the "use strict" or it will break JetBrains auto-complete
      */
@@ -484,6 +487,8 @@ let pureLib = (function() {
             let dom = ctd(target);                                  // Get the DOM
             dom.innerHTML = htmlCode;
         },
+
+        'val': val,                 // Value related methods
 
 
         /**
