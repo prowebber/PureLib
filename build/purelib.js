@@ -1,4 +1,4 @@
-var pure = (function () {
+var pureLib = (function () {
     'use strict';
 
     /**

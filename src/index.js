@@ -252,18 +252,6 @@ P.prototype = {
 
 
     /**
-     * Return True if the specified value exists in an array
-     *
-     * @param haystack  The array
-     * @param needle    The value being searched
-     * @returns {boolean} True if the value is in the array
-     */
-    'inArray': function(haystack, needle){
-        return haystack.indexOf(needle) > -1;
-    },
-
-
-    /**
      * Returns True if a Object, Array, or String are empty
      *
      * @param jsObject {Object|Array|String}   The JS Object you want to test
@@ -360,8 +348,8 @@ P.prototype = {
     /**
      * Remove the specified CSS class(es) from the target Element
      *
-     * @param target {Object|string}    DOM object or HTML element ID
-     * @param className     (string|array): string - The class to remove, Array - a list of classes to remove
+     * @param target {Element|String}       Element or HTML element ID
+     * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove
      */
     'removeClass': function (target, className) {
         let dom = ctd(target);                                  // Get the DOM

@@ -1,4 +1,5 @@
 # PureLib
+`Version 1.1`
 
 ## Overview
 PureLib is a lightweight and simple JavaScript library created to replace the usage of jQuery (or any heavy DOM manipulation library)
@@ -86,6 +87,15 @@ l.removeClass(sideBarDom, 'animate');
 | `showAllBySelector(a)`        | Find and show all Elements that match the selector                                      |
 | `updateHtml(a, b)`            | Replace the HTML inside the target Element                                              |
 | `validate.isJson(a)`          | Returns True if the data is valid Json                                                  |
+
+
+### Command Changes
+As PureLib is improved, some of the methods calls may be changed.  Below specifies commands that have been
+changed and what they were changed to.
+
+| Prev Command    | New Command         | Changed at Version |
+|:----------------|:--------------------|:------------------:|
+| `inArray(a, b)` | `val.inArray(a, b)` |        1.1         |
 
 
 ## Examples
