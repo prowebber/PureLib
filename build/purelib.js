@@ -45,10 +45,21 @@ var pureLib = (function () {
        * Return true if the value is a Key in an Object
        *
        * @param obj {Object} The object to search
-       * @param value {String|Number} The value to search for
+       * @param value {{b: string, u: string, i: string}} The value to search for
        */
       isKey: function isKey(obj, value) {
         return obj.hasOwnProperty(value);
+      },
+
+      /**
+       * Return True if the specified value exists in an array
+       *
+       * @param haystack  The array
+       * @param needle    The value being searched
+       * @returns {boolean} True if the value is in the array
+       */
+      inArray: function inArray(haystack, needle) {
+        return haystack.indexOf(needle) > -1;
       }
     };
 
@@ -327,17 +338,6 @@ var pureLib = (function () {
       },
 
       /**
-       * Return True if the specified value exists in an array
-       *
-       * @param haystack  The array
-       * @param needle    The value being searched
-       * @returns {boolean} True if the value is in the array
-       */
-      'inArray': function inArray(haystack, needle) {
-        return haystack.indexOf(needle) > -1;
-      },
-
-      /**
        * Returns True if a Object, Array, or String are empty
        *
        * @param jsObject {Object|Array|String}   The JS Object you want to test
@@ -439,8 +439,8 @@ var pureLib = (function () {
       /**
        * Remove the specified CSS class(es) from the target Element
        *
-       * @param target {Object|string}    DOM object or HTML element ID
-       * @param className     (string|array): string - The class to remove, Array - a list of classes to remove
+       * @param target {Element|String}       Element or HTML element ID
+       * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove
        */
       'removeClass': function removeClass(target, className) {
         var dom = ctd(target); // Get the DOM

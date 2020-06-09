@@ -355,9 +355,7 @@ P.prototype = {
         let dom = ctd(target);                                  // Get the DOM
 
         if(className.constructor === Array){                    // If it was passed an array of classes to remove
-            for (let i = 0; i < className.length; i++) {        // Loop through each class name
-                dom.classList.remove(className[i]);             // Remove the class
-            }
+            dom.classList.remove(...className);                 // Remove all classes using a spread operator
         }
         else{
             dom.classList.remove(className);                    // Remove the class
@@ -368,16 +366,16 @@ P.prototype = {
     /**
      * Remove the specified CSS class from all Elements that match a selector
      *
-     * @param target {Object|string}    DOM object or HTML element ID
-     * @param selector {string}     The selector query/text to match
-     * @param className     The class to remove
+     * @param target {Object|string}        DOM object or HTML element ID
+     * @param selector {string}             The selector query/text to match
+     * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove
      */
     'removeClassFromAll': function (target, selector, className) {
         let dom = ctd(target);                                  // Get the DOM
         let elem = dom.querySelectorAll(selector);              // Find all the matching elements inside the dom
 
         for (let i = 0; i < elem.length; i++) {                 // Loop through each element
-            elem[i].classList.remove(className);                // Remove the class
+            this.removeClass(elem[i], className);               // Remove the class
         }
     },
 
