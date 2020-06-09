@@ -17,28 +17,34 @@ P.prototype = {
     /**
      * Add the specified CSS class to the target Element
      *
-     * @param target {Element|string}   Element or HTML element ID
-     * @param className {String}        The class name to add (do not use leading periods '.' in class names)
+     * @param target {Element|string}       Element or HTML element ID
+     * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove (do not use leading periods in class name)
      */
     'addClass': function(target, className){
         let dom = ctd(target);
-        dom.classList.add(className);
+
+        if(className.constructor === Array){                 // If it was passed an array of classes to add
+            dom.classList.add(...className);                 // Add all classes using a spread operator
+        }
+        else{
+            dom.classList.add(className);                    // Add the class
+        }
     },
 
 
     /**
      * Add the specified CSS class to all Elements that match the selector
      *
-     * @param target {Element}      Element or HTML element ID
-     * @param selector {string}     The selector query/text to match
-     * @param className {string}    The class name to add (do not use leading periods '.' in class names)
+     * @param target {Element}              Element or HTML element ID
+     * @param selector {string}             The selector query/text to match
+     * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove (do not use leading periods in class name)
      */
     'addClassToAll': function(target, selector, className){
         let dom = ctd(target);                                  // Get the DOM
         let elem = dom.querySelectorAll(selector);              // Find all the matching elements inside the dom
 
         for (let i = 0; i < elem.length; i++) {                 // Loop through each element
-            elem[i].classList.add(className);                   // Add the class
+            this.addClass(elem[i], className);                  // Add the class
         }
     },
 
