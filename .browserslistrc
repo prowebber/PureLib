@@ -1,5 +1,5 @@
 # Browsers that we support
 
 last 1 version
-#not dead and not IE > 0
-#> 0.2% AND not IE > 0
+not dead and not IE > 0
+> 0.2% AND not IE > 0

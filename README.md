@@ -111,6 +111,30 @@ Below are examples of syntax to use for query selector strings.  You can see mor
 | `input.search`      | Finds all `<input class='search'>` elements     |
 
 
+## Commands
+Below are examples of the PureLib commands.
+
+
+
+### addClass(target, className)
+Adds the specified CSS class to the target element.
+
+| Name        | Type                             | Details                                                                          |
+|:------------|:---------------------------------|:---------------------------------------------------------------------------------|
+| `target`    | {_DOM Element_} or {_string_} | The target element. Passing a {_string_} will find and target the element by ID. |
+| `className` | _string_                          | The class name to add (do not use leading periods '.' in class names)            |
+
+#### Example
+```js
+// Add the CSS class .animate to an element with the ID 'sidebar_footer'
+l.addClass('sidebar_footer', 'animate');
+
+// Add the CSS class .animate to an element object
+let target = l.getDom('sidebar_footer');    // Get the element
+l.removeClass(target, 'animate');
+```
+
+
 
 ## Other
 
@@ -122,22 +146,4 @@ Below are examples of syntax to use for query selector strings.  You can see mor
 
 ## Function Examples
 
-### addClass(target, className)
-Adds the specified CSS class to the target element.
 
-#### Arguments
-
-| Name        | Type                             | Details                                                                          |
-|:------------|:---------------------------------|:---------------------------------------------------------------------------------|
-| `target`    | {_Element object_} or {_string_} | The target element. Passing a {_string_} will find and target the element by ID. |
-| `className` | _string_                         | The class name to add (do not use leading periods '.' in class names)            |
-
-#### Example
-```js
-// Add the CSS class .animate to an element with the ID 'sidebar_footer'
-l.addClass('sidebar_footer', 'animate');
-
-// Add the CSS class .animate to an element object
-let target = l.getDom('sidebar_footer');    // Get the element
-l.removeClass(target, 'animate');
-```
