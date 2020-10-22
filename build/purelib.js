@@ -45,7 +45,7 @@ var pureLib = (function () {
        * Return true if the value is a Key in an Object
        *
        * @param obj {Object} The object to search
-       * @param value {{b: string, u: string, i: string}} The value to search for
+       * @param value {String|Number} The value to search for
        */
       isKey: function isKey(obj, value) {
         return obj.hasOwnProperty(value);
@@ -94,20 +94,29 @@ var pureLib = (function () {
       /**
        * Add the specified CSS class to the target Element
        *
-       * @param target {Element|string}   Element or HTML element ID
-       * @param className {String}        The class name to add (do not use leading periods '.' in class names)
+       * @param target {Element|string}       Element or HTML element ID
+       * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove (do not use leading periods in class name)
        */
       'addClass': function addClass(target, className) {
         var dom = ctd(target);
-        dom.classList.add(className);
+
+        if (className.constructor === Array) {
+          // If it was passed an array of classes to add
+          for (var i = 0; i < className.length; i++) {
+            // Loop through each item
+            dom.classList.add(className[i]); // Add the class
+          }
+        } else {
+          dom.classList.add(className); // Add the class
+        }
       },
 
       /**
        * Add the specified CSS class to all Elements that match the selector
        *
-       * @param target {Element}      Element or HTML element ID
-       * @param selector {string}     The selector query/text to match
-       * @param className {string}    The class name to add (do not use leading periods '.' in class names)
+       * @param target {Element}              Element or HTML element ID
+       * @param selector {string}             The selector query/text to match
+       * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove (do not use leading periods in class name)
        */
       'addClassToAll': function addClassToAll(target, selector, className) {
         var dom = ctd(target); // Get the DOM
@@ -116,7 +125,7 @@ var pureLib = (function () {
 
         for (var i = 0; i < elem.length; i++) {
           // Loop through each element
-          elem[i].classList.add(className); // Add the class
+          this.addClass(elem[i], className); // Add the class
         }
       },
 
@@ -448,7 +457,7 @@ var pureLib = (function () {
         if (className.constructor === Array) {
           // If it was passed an array of classes to remove
           for (var i = 0; i < className.length; i++) {
-            // Loop through each class name
+            // Loop through each item
             dom.classList.remove(className[i]); // Remove the class
           }
         } else {
@@ -459,9 +468,9 @@ var pureLib = (function () {
       /**
        * Remove the specified CSS class from all Elements that match a selector
        *
-       * @param target {Object|string}    DOM object or HTML element ID
-       * @param selector {string}     The selector query/text to match
-       * @param className     The class to remove
+       * @param target {Object|string}        DOM object or HTML element ID
+       * @param selector {string}             The selector query/text to match
+       * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove
        */
       'removeClassFromAll': function removeClassFromAll(target, selector, className) {
         var dom = ctd(target); // Get the DOM
@@ -470,7 +479,7 @@ var pureLib = (function () {
 
         for (var i = 0; i < elem.length; i++) {
           // Loop through each element
-          elem[i].classList.remove(className); // Remove the class
+          this.removeClass(elem[i], className); // Remove the class
         }
       },
 

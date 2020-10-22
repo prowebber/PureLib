@@ -23,13 +23,11 @@ P.prototype = {
     'addClass': function(target, className){
         let dom = ctd(target);
 
-        if(className.constructor === Array){                    // If it was passed an array of classes to add
-            for (let i = 0; i < className.length; i++) {        // Loop through each item
-                dom.classList.add(className[i]);                // Add the class
-            }
+        if(className.constructor === Array){                 // If it was passed an array of classes to add
+            dom.classList.add(...className);                 // Add all classes using a spread operator
         }
         else{
-            dom.classList.add(className);                       // Add the class
+            dom.classList.add(className);                    // Add the class
         }
     },
 
@@ -363,9 +361,7 @@ P.prototype = {
         let dom = ctd(target);                                  // Get the DOM
 
         if(className.constructor === Array){                    // If it was passed an array of classes to remove
-            for (let i = 0; i < className.length; i++) {        // Loop through each item
-                dom.classList.remove(className[i]);             // Remove the class
-            }
+            dom.classList.remove(...className);                 // Remove all classes using a spread operator
         }
         else{
             dom.classList.remove(className);                    // Remove the class

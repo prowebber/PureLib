@@ -9,31 +9,10 @@
     "build-tiny": "babel src/index.js -o build/purelib.js && terser build/purelib.js -c -m reserved=['addClass'] -o build/purelib-new.min.js",
     "build-old": "rollup -c && terser build/purelib.js -c -o build/purelib.min.js",
     "test_a": "rollup -c test/iife_a/rollup.config.test_a.js",
-    "tiny": "terser build/purelib.js -c -m -o build/purelib-new.min.js"
+    "tiny": "terser build/purelib.js -c -m -o build/purelib-new.min.js",
+    "build-babel-test": "rollup -c rollup-babel-test.js && terser build/babel-test.js -c -o build/babel-test.min.js"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@babel/cli": "^7.7.4",
-    "@babel/core": "^7.7.4",
-    "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/plugin-transform-runtime": "^7.7.4",
-    "@babel/preset-env": "^7.7.4",
-    "@babel/preset-react": "^7.7.4",
-    "browserslist": "^4.8.0",
-    "rollup": "^1.27.5",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "terser": "^4.4.0"
-  },
-  "babel": {
-    "presets": [
-      "@babel/env"
-    ]
-  },
-  "browserslist": [
-    "last 1 version",
-    "not dead",
-    "> 0.2%"
-  ]
+  "dependencies": {}
 }
