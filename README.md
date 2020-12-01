@@ -42,7 +42,6 @@ These functions expect to receive a DOM value or HTML ID as an argument.
 
 **Examples**
 ```js
-
 // Add the CSS class .animate to an element by HTML ID
 l.addClass('sidebar_footer', 'animate');
 
@@ -119,12 +118,11 @@ Below are examples of the PureLib commands.
 ### addClass(target, className)
 Adds the specified CSS class to the target element.
 
-| Name        | Type                             | Details                                                                          |
-|:------------|:---------------------------------|:---------------------------------------------------------------------------------|
+| Name        | Type                          | Notes                                                                            |
+|:------------|:------------------------------|:---------------------------------------------------------------------------------|
 | `target`    | {_DOM Element_} or {_string_} | The target element. Passing a {_string_} will find and target the element by ID. |
-| `className` | _string_                          | The class name to add (do not use leading periods '.' in class names)            |
+| `className` | _string_                      | The class name to add (do not use leading periods '.' in class names)            |
 
-#### Example
 ```js
 // Add the CSS class .animate to an element with the ID 'sidebar_footer'
 l.addClass('sidebar_footer', 'animate');
@@ -134,6 +132,25 @@ let target = l.getDom('sidebar_footer');    // Get the element
 l.removeClass(target, 'animate');
 ```
 
+
+### val.isKey(obj, value)
+Returns `true` if the value exists as a key in the specified Object.
+
+
+| Name    | Type       | Notes                                     |
+|:--------|:-----------|:------------------------------------------|
+| `obj`   | {_Object_} | The object you want to search             |
+| `value` | _string_   | The name of the key you are searching for |
+
+```js
+let animals = {
+	'cat': 'Bart',
+	'dog': 'Max'
+};
+
+let isCat = l.val.isKey(animals, 'cat');     // Returns true
+let isHorse = l.val.isKey(animals, 'horse');   // Returns false
+```
 
 
 ## Other
