@@ -62,7 +62,8 @@ l.removeClass(sideBarDom, 'animate');
 | `dropdownTextValue(a)`        | Get the text value for the currently selected option in an HTML dropdown/select         |
 | `dropdownValue(a)`            | Get the field value of the currently selected option in an HTML dropdown/select         |
 | `findBySelector(a, b)`        | Traverse through children and return the first Element that matches the selector        |
-| `findAllBySelector(a, b`      | Traverse through children and return all Elements that matches the selector             |
+| `findAllBySelector(a, b)`     | Traverse through children and return all Elements that matches the selector             |
+| `getCoords(a)`                | Returns the coordinates of the element relative to the page                             |
 | `getDistanceFromTop(a)`       | Get the distance in pixels from the target to the top of the document                   |
 | `getDom(a)`                   | Return the DOM Object of an element                                                     |
 | `getInputValue(a)`            | Return the value of an HTML input field                                                 |
