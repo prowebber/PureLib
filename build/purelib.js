@@ -243,6 +243,30 @@ var pureLib = (function () {
       },
 
       /**
+       * Get the coordinates of an Element relative to the page
+       *
+       * x1 = Left position of the element on the page
+       * x2 = Right position of the element on the page
+       * y1 = Top position of the element on the page
+       * y2 = Bottom position of the element on the page
+       *
+       * @param containerTarget {Object|string}   DOM object for HTML ID to search for
+       * @returns {{y1, x1, y2, x2}}              Object of coordinates
+       */
+      getCoords: function getCoords(containerTarget) {
+        var containerDom = ctd(containerTarget);
+        var rect = containerDom.getBoundingClientRect(); // Get the bounding coords relative to the viewport
+
+        var coords = {
+          x1: rect.left + window.scrollX,
+          x2: rect.right + window.scrollX,
+          y1: rect.top + window.scrollY,
+          y2: rect.bottom + window.scrollY
+        };
+        return coords;
+      },
+
+      /**
        * Get the distance in pixels from the target to the top of the document
        *  - Iterates through all elements above the DOM to get an accurate value in px
        *
