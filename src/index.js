@@ -20,7 +20,8 @@ P.prototype = {
      * @param target {Element|string}       Element or HTML element ID
      * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove (do not use leading periods in class name)
      */
-    'addClass': function(target, className){
+    addClass: function(target, className){
+        if(className.length == 0) return;                       // Don't continue if the array|string are empty
         let dom = ctd(target);
 
         if(className.constructor === Array){                    // If it was passed an array of classes to add
