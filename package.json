@@ -2,9 +2,10 @@
   "name": "purelib",
   "version": "1.2.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/index-prev.js",
   "scripts": {
-    "build": "rollup -c rollup.config.js && terser build/purelib.js -c -m keep_classnames -o build/purelib.min.js"
+    "build": "rollup -c rollup.config.js && terser build/purelib.js -c -m keep_classnames -o build/purelib.min.js",
+    "build-prev": "rollup -c rollup.config-old.js && terser build/purelib.js -c -m keep_classnames -o build/purelib.min.js"
   },
   "author": "",
   "license": "ISC",

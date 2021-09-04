@@ -1,7 +1,6 @@
 import {ctd} from './common';
 import {val} from './value/index';
 import {valid} from "./validate";
-import {elem as elements} from "./lib/elements";
 
 
 // Create an empty function to add modules to
@@ -15,8 +14,39 @@ export default function P(){
  */
 
 P.prototype = {
+    /**
+     * Add the specified CSS class to the target Element
+     *
+     * @param target {Element|string}       Element or HTML element ID
+     * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove (do not use leading periods in class name)
+     */
+    'addClass': function(target, className){
+        let dom = ctd(target);
+
+        if(className.constructor === Array){                 // If it was passed an array of classes to add
+            dom.classList.add(...className);                 // Add all classes using a spread operator
+        }
+        else{
+            dom.classList.add(className);                    // Add the class
+        }
+    },
 
 
+    /**
+     * Add the specified CSS class to all Elements that match the selector
+     *
+     * @param target {Element}              Element or HTML element ID
+     * @param selector {string}             The selector query/text to match
+     * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove (do not use leading periods in class name)
+     */
+    'addClassToAll': function(target, selector, className){
+        let dom = ctd(target);                                  // Get the DOM
+        let elem = dom.querySelectorAll(selector);              // Find all the matching elements inside the dom
+
+        for (let i = 0; i < elem.length; i++) {                 // Loop through each element
+            this.addClass(elem[i], className);                  // Add the class
+        }
+    },
 
     /**
      * Starting at the target, traverse up the parents until it finds the matching Element
@@ -33,7 +63,16 @@ P.prototype = {
         return (dom) ? dom.closest(selector) : false;
     },
 
-
+    /**
+     * Get the CSS property value for the target Element
+     *
+     * @param target {Object|string}    DOM object or HTML element ID
+     * @param cssPropName {string}      The CSS property (e.g. 'display', 'background-color', etc.)
+     */
+    'cssValue': function(target, cssPropName){
+        let dom = ctd(target);                                  // Get the DOM
+        return window.getComputedStyle(dom).getPropertyValue(cssPropName);
+    },
 
     /**
      * Get a data-attribute value from the target Element
@@ -111,31 +150,6 @@ P.prototype = {
     'findAllBySelector': function (parentTarget, selector) {
         let dom = ctd(parentTarget);                            // Get the DOM
         return dom.querySelectorAll(selector);                  // Find all the matching elements inside the dom
-    },
-
-    /**
-     * Get the coordinates of an Element relative to the page
-     *
-     * x1 = Left position of the element on the page
-     * x2 = Right position of the element on the page
-     * y1 = Top position of the element on the page
-     * y2 = Bottom position of the element on the page
-     *
-     * @param containerTarget {Object|string}   DOM object for HTML ID to search for
-     * @returns {{y1, x1, y2, x2}}              Object of coordinates
-     */
-    getCoords: function(containerTarget){
-        let containerDom = ctd(containerTarget);
-        let rect = containerDom.getBoundingClientRect();	    // Get the bounding coords relative to the viewport
-
-        let coords = {
-            x1: rect.left + window.scrollX,
-            x2: rect.right + window.scrollX,
-            y1: rect.top + window.scrollY,
-            y2: rect.bottom + window.scrollY,
-        };
-
-        return coords;
     },
 
     /**
@@ -347,9 +361,7 @@ P.prototype = {
         let dom = ctd(target);                                  // Get the DOM
 
         if(className.constructor === Array){                    // If it was passed an array of classes to remove
-            for (let i = 0; i < className.length; i++) {        // Loop through each item
-                dom.classList.remove(className[i]);             // Remove the class
-            }
+            dom.classList.remove(...className);                 // Remove all classes using a spread operator
         }
         else{
             dom.classList.remove(className);                    // Remove the class
