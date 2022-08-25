@@ -1,11 +1,10 @@
-import {ctd} from './common';
+import {ctd} from './lib/selector';
 import {val} from './value/index';
 import {valid} from "./validate";
 
 
 // Create an empty function to add modules to
-export default function P(){
-}
+export default function P(){}
 
 
 /**
@@ -15,12 +14,12 @@ export default function P(){
 
 P.prototype = {
     /**
-     * Add the specified CSS class to the target Element
+     * Adds the CSS class(es) to the target Element
      *
      * @param target {Element|string}       Element or HTML element ID
      * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove (do not use leading periods in class name)
      */
-    addClass: function(target, className){
+    addClass: (target, className) => {
         if(className.length == 0) return;                       // Don't continue if the array|string are empty
         let dom = ctd(target);
 
@@ -42,7 +41,7 @@ P.prototype = {
      * @param selector {string}             The selector query/text to match
      * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove (do not use leading periods in class name)
      */
-    'addClassToAll': function(target, selector, className){
+    addClassToAll: function(target, selector, className){
         let dom = ctd(target);                                  // Get the DOM
         let elem = dom.querySelectorAll(selector);              // Find all the matching elements inside the dom
 
@@ -52,17 +51,14 @@ P.prototype = {
     },
 
     /**
-     * Starting at the target, traverse up the parents until it finds the matching Element
-     *  - Searches up the DOM tree
-     *  - Returns matching element
+     * Traverse up the DOM tree starting at target until matching Element is found
      *
      * @param target {Element|String}   Element or HTML element ID
      * @param selector {String}         The selector query/text to match
      * @returns {Object}                The DOM of the matched element
      */
-    'closestEl': function (target, selector) {
+    closestEl: (target, selector) => {
         let dom = ctd(target, true);                                  // Get the DOM
-
         return (dom) ? dom.closest(selector) : false;
     },
 
@@ -72,7 +68,7 @@ P.prototype = {
      * @param target {Object|string}    DOM object or HTML element ID
      * @param cssPropName {string}      The CSS property (e.g. 'display', 'background-color', etc.)
      */
-    'cssValue': function(target, cssPropName){
+    cssValue: (target, cssPropName) => {
         let dom = ctd(target);                                  // Get the DOM
         return window.getComputedStyle(dom).getPropertyValue(cssPropName);
     },
@@ -205,7 +201,7 @@ P.prototype = {
      * @param target {Object|string}        DOM object or HTML element ID
      * @returns {*|HTMLElement|undefined}
      */
-    'getDom': function(target){
+    getDom: function(target){
         return ctd(target, true);
     },
 
@@ -215,9 +211,8 @@ P.prototype = {
      * @param target {Object|string}    DOM object or HTML element ID
      * @returns {*}			            The value of the input
      */
-    'getInputValue': function(target){
-        let dom = ctd(target);          // Get the DOM
-        return dom.value;
+    getInputValue: (target) => {
+        return ctd(target).value;
     },
 
     /**
@@ -253,7 +248,7 @@ P.prototype = {
      * @param className {string}        The class to search for
      * @returns {boolean}               True if class exists; false otherwise
      */
-    'hasClass': function (target, className) {
+    hasClass: (target, className) => {
         let dom = ctd(target);                                  // Get the DOM
 
         // If the DOM exists, return a bool of the class existence; otherwise return false;
@@ -265,9 +260,8 @@ P.prototype = {
      *
      * @param target {Object|string}        DOM object or HTML element ID
      */
-    'hide': function (target) {
-        let dom = ctd(target);              // Get the DOM
-        dom.classList.add('hide');          // Add the 'hide' class
+    hide: (target) => {
+        ctd(target).classList.add('hide');          // Add the 'hide' class
     },
 
     /**
@@ -276,7 +270,7 @@ P.prototype = {
      *
      * @param selector {string}     The selector query/text to match
      */
-    'hideAllBySelector': function(selector){
+    hideAllBySelector: (selector) => {
         let elem = document.querySelectorAll(selector);
 
         for (let i = 0; i < elem.length; i++) {             // Loop through each element
@@ -373,7 +367,7 @@ P.prototype = {
      *
      * @param target {Object|string}    DOM object or HTML element ID
      */
-    'remove': function (target) {
+    remove: (target) => {
         let dom = ctd(target);                                  // Get the DOM
         dom.parentNode.removeChild(dom);
     },
@@ -385,7 +379,7 @@ P.prototype = {
      * @param target {Element|String}       Element or HTML element ID
      * @param className {String|Array}      String - The class to remove; Array - a list of classes to remove
      */
-    'removeClass': function (target, className) {
+    removeClass: function (target, className) {
         let dom = ctd(target);                                  // Get the DOM
 
         if(className.constructor === Array){                    // If it was passed an array of classes to remove

@@ -1,10 +1,5 @@
 # PureLib
-`Version 1.1`
-
-## Overview
-PureLib is a lightweight and simple JavaScript library created to replace the usage of jQuery (or any heavy DOM manipulation library)
-across web applications.  It is designed to reduce code by providing minified functions that act as shortcuts to commonly used JS
-commands.  Since file size and performance are the main goals of PureLib, it does not support outdated browsers.
+PureLib is a lightweight and simple JavaScript library that contains "shortcuts" to commonly referenced JavaScript methods. 
 
 #### Features
 * Babel Polyfill supports top 95% ±1% of browsers. [See the list of supported browsers here](https://browserl.ist/?q=last+1+version%2C+not+dead%2C+%3E+0.2%25)
@@ -12,12 +7,24 @@ commands.  Since file size and performance are the main goals of PureLib, it doe
 * Final script is 1.5KB in size
 * Target items by passing the [Element object](https://developer.mozilla.org/en-US/docs/Web/API/Element) or the [HTML ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) to the function.
 
+## Installation
+There are two ways to install PureLib for testing or use in production.
 
-## Usage
-1. Download and include the following files in the web application:
-   * `purelib.min.js`
-   * `purelib.css`
-2. Use the commands below to access the functions.
+### Quick Installation
+Download (or copy) the following files and include them in the header of the page.
+* `dist/purelib.min.js` - Minified script
+* `dist/purelib.min.css` - Minified CSS script
+
+### Development Installation
+You can clone or download PureLib for personal development (if desired).  The below details explain how to do this:
+
+**File Structure** - PureLib organizes files using the following structure:
+```
+/archive
+/dist          ** Contains the final compiled minified files
+/src           ** Contains original source files
+|--   /css     ** Contains any CSS files used by PureLib
+```
 
 #### Arguments
 
@@ -51,42 +58,42 @@ l.removeClass(sideBarDom, 'animate');
 
 ```
 
-| Command                       | Action                                                                                  |
-|:------------------------------|:----------------------------------------------------------------------------------------|
-| `addClass(a, b)`              | Add the specified CSS class to the target Element                                       |
-| `addClassToAll(a, b, c)`      | Add the specified CSS class to all Elements that match the selector                     |
-| `closestEl(a, b)`             | Starting at the target, traverse up the parents until it finds the matching Element     |
-| `cssValue(a, b)`              | Get the CSS property value for the target Element                                       |
-| `dataAttr(a, b)`              | Get a data-attribute value from the target Element                                      |
-| `dropdownDataAttr(a, b)`      | Get a data-attribute value for the currently selected option in an HTML dropdown/select |
-| `dropdownTextValue(a)`        | Get the text value for the currently selected option in an HTML dropdown/select         |
-| `dropdownValue(a)`            | Get the field value of the currently selected option in an HTML dropdown/select         |
-| `findBySelector(a, b)`        | Traverse through children and return the first Element that matches the selector        |
-| `findAllBySelector(a, b)`     | Traverse through children and return all Elements that matches the selector             |
-| `getCoords(a)`                | Returns the coordinates of the element relative to the page                             |
-| `getDistanceFromTop(a)`       | Get the distance in pixels from the target to the top of the document                   |
-| `getDom(a)`                   | Return the DOM Object of an element                                                     |
-| `getInputValue(a)`            | Return the value of an HTML input field                                                 |
-| `getKeyCode(a)`               | Return the 'key code' for pressed keys/keyboard actions                                 |
-| `getTextValue(a)`             | Gets the text value of an Element (e.g. `<div>Test</div>` would return 'test')          |
-| `hasClass(a, b)`              | Return True if the specified CSS class exists in the target Element                     |
-| `hide(a)`                     | Hide an element from the screen                                                         |
-| `hideAllBySelector(a)`        | Find and hide all elements that match the selector                                      |
-| `inArray(a, b)`               | Returns True if the specified value exists in an array                                  |
-| `isEmpty(a)`                  | Returns True if a Object, Array, or String are empty                                    |
-| `moveAfter(a, b)`             | Move an Element after the closing HTML tag of another Element                           |
-| `moveBefore(a, b)`            | Move an Element before the opening HTML tag of another Element                          |
-| `moveInsideToBottom(a, b)`    | Move an Element before the closing HTML tag of another Element                          |
-| `moveInsideToTop(a, b)`       | Move an Element after the opening HTML tag of another Element                           |
-| `remove(a)`                   | Removes the target Element from the DOM                                                 |
-| `removeClass(a, b)`           | Remove the specified CSS class(es) from the target Element                              |
-| `removeClassFromAll(a, b, c)` | Remove the specified CSS class from all Elements that match a selector                  |
-| `resetForm(a)`                | Resets the specified HTML form, clears all field inputs                                 |
-| `setDataAttr(a, b, c)`        | Set/update a data-attribute value for the specified target Element                      |
-| `show(a)`                     | Show the target Element (if it was previously hidden)                                   |
-| `showAllBySelector(a)`        | Find and show all Elements that match the selector                                      |
-| `updateHtml(a, b)`            | Replace the HTML inside the target Element                                              |
-| `validate.isJson(a)`          | Returns True if the data is valid Json                                                  |
+| Command                         | Action                                                                                  |
+|:--------------------------------|:----------------------------------------------------------------------------------------|
+| `l.addClass(a, b)`              | Add the specified CSS class to the target Element                                       |
+| `l.addClassToAll(a, b, c)`      | Add the specified CSS class to all Elements that match the selector                     |
+| `l.closestEl(a, b)`             | Starting at the target, traverse up the parents until it finds the matching Element     |
+| ~~`cssValue(a, b)`~~            | Get the CSS property value for the target Element                                       |
+| `dataAttr(a, b)`                | Get a data-attribute value from the target Element                                      |
+| `dropdownDataAttr(a, b)`        | Get a data-attribute value for the currently selected option in an HTML dropdown/select |
+| `dropdownTextValue(a)`          | Get the text value for the currently selected option in an HTML dropdown/select         |
+| `dropdownValue(a)`              | Get the field value of the currently selected option in an HTML dropdown/select         |
+| `findBySelector(a, b)`          | Traverse through children and return the first Element that matches the selector        |
+| `findAllBySelector(a, b)`       | Traverse through children and return all Elements that matches the selector             |
+| `getCoords(a)`                  | Returns the coordinates of the element relative to the page                             |
+| `getDistanceFromTop(a)`         | Get the distance in pixels from the target to the top of the document                   |
+| `getDom(a)`                     | Return the DOM Object of an element                                                     |
+| `l.getInputValue(a)`            | Return the value of an HTML input field                                                 |
+| ~~`getKeyCode(a)`~~             | Return the 'key code' for pressed keys/keyboard actions                                 |
+| ~~`getTextValue(a)`~~           | Gets the text value of an Element (e.g. `<div>Test</div>` would return 'test')          |
+| `l.hasClass(target, b)`         | Return True if the specified CSS class exists in the target Element                     |
+| `l.hide(target)`                | Hide an element from the screen                                                         |
+| `l.hideAllBySelector(selector)` | Find and hide all elements that match the selector                                      |
+| `inArray(a, b)`                 | Returns True if the specified value exists in an array                                  |
+| `isEmpty(a)`                    | Returns True if a Object, Array, or String are empty                                    |
+| `moveAfter(a, b)`               | Move an Element after the closing HTML tag of another Element                           |
+| `moveBefore(a, b)`              | Move an Element before the opening HTML tag of another Element                          |
+| `moveInsideToBottom(a, b)`      | Move an Element before the closing HTML tag of another Element                          |
+| `moveInsideToTop(a, b)`         | Move an Element after the opening HTML tag of another Element                           |
+| `remove(a)`                     | Removes the target Element from the DOM                                                 |
+| `removeClass(a, b)`             | Remove the specified CSS class(es) from the target Element                              |
+| `removeClassFromAll(a, b, c)`   | Remove the specified CSS class from all Elements that match a selector                  |
+| `resetForm(a)`                  | Resets the specified HTML form, clears all field inputs                                 |
+| `setDataAttr(a, b, c)`          | Set/update a data-attribute value for the specified target Element                      |
+| `show(a)`                       | Show the target Element (if it was previously hidden)                                   |
+| `showAllBySelector(a)`          | Find and show all Elements that match the selector                                      |
+| `updateHtml(a, b)`              | Replace the HTML inside the target Element                                              |
+| `validate.isJson(a)`            | Returns True if the data is valid Json                                                  |
 
 
 ### Command Changes

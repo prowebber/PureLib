@@ -4,8 +4,7 @@ import {valid} from "./validate";
 
 
 // Create an empty function to add modules to
-export default function P(){
-}
+export default function P(){}
 
 
 /**
