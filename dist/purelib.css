@@ -1,0 +1,10 @@
+/* PureLib Version: 1.2.0 */
+/**
+    PureLib CSS Classes
+    - These classes are required for certain PureLib JavaScript functions
+ */
+
+/* Hide/show */
+.hide{
+    display:none !important;
+}
