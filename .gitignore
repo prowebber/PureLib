@@ -1,7 +1,13 @@
-# Project exclude paths
-/node_modules/
-.idea/*
+#
+# Ignore JetBrains config files, but track shared scopes
+.idea/
 !.idea/scopes
-lib/**/.idea
+
+#
+# JavaScript
+node_modules/
+
+#
+# PureLib
 test/*
 f_ref/*
