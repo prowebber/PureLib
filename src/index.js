@@ -1,6 +1,7 @@
 import {ctd} from './lib/selector';
 import {val} from './value/index';
 import {valid} from "./validate";
+import {dataAttrName} from "./lib/common";
 
 
 // Create an empty function to add modules to
@@ -75,15 +76,15 @@ P.prototype = {
 
     /**
      * Get a data-attribute value from the target Element
+     * - The {dataAttribute} string can be with or without 'data-' prefix
      *
      * @param target {Object|string}    DOM object or HTML element ID
      * @param dataAttribute {string}    The data attribute to get the value of
      * @returns {string | null}         The attribute value
      */
-    'dataAttr': function (target, dataAttribute) {
+    dataAttr: (target, dataAttribute) => {
         let dom = ctd(target);                                  // Get the DOM
-        let attribute_name = 'data-' + dataAttribute;
-        return dom.getAttribute([attribute_name]);
+        return dom.getAttribute([dataAttrName(dataAttribute)]);
     },
 
     /**
@@ -93,11 +94,10 @@ P.prototype = {
      * @param dataAttribute {string}    The data attribute to get the value of
      * @returns {string | null}         The value of the data attribute
      */
-    'dropdownDataAttr': function(target, dataAttribute){
-        let dom = ctd(target);                                  // Get the DOM
-        let attribute_name = 'data-' + dataAttribute;
-        let selected = dom.options[dom.selectedIndex];          // Find the selected item in the dropdown
-        return selected.getAttribute(attribute_name);           // Return the specified data attribute
+    dropdownDataAttr: (target, dataAttribute) => {
+        let dom = ctd(target);                                          // Get the DOM
+        let selected = dom.options[dom.selectedIndex];                  // Find the selected item in the dropdown
+        return selected.getAttribute(dataAttrName(dataAttribute));      // Return the specified data attribute
     },
 
     /**
@@ -106,10 +106,9 @@ P.prototype = {
      * @param target {Object|string}    DOM object or HTML element ID
      * @returns {string}                The text value
      */
-    'dropdownTextValue': function (target) {
-        let dom = ctd(target);                                  // Get the DOM
-        let selected = dom.options[dom.selectedIndex];          // Find the selected item in the dropdown
-        return selected.text;
+    dropdownTextValue: (target) => {
+        let dom = ctd(target);                              // Get the DOM
+        return dom.options[dom.selectedIndex].text;         // Find the selected item in the dropdown
     },
 
     /**
@@ -118,8 +117,8 @@ P.prototype = {
      * @param target {Object|string}    DOM object or HTML element ID
      * @returns {string}                The value of the selected element
      */
-    'dropdownValue': function (target) {
-        let dom = ctd(target);                                  // Get the DOM
+    dropdownValue: (target) => {
+        let dom = ctd(target);                              // Get the DOM
         return dom.options[dom.selectedIndex].value;
     },
 
@@ -132,9 +131,8 @@ P.prototype = {
      * @param selector {string}         The selector query/text to match
      * @returns {Object}                JavaScript DOM object
      */
-    'findBySelector': function (parentTarget, selector) {
-        let parentDom = ctd(parentTarget);                      // Get the DOM
-        return parentDom.querySelector(selector);
+    findBySelector: (parentTarget, selector) => {
+        return ctd(parentTarget).querySelector(selector);
     },
 
     /**
@@ -146,9 +144,8 @@ P.prototype = {
      * @param selector {string}                 The selector query/text to match
      * @returns {NodeList}                      NodeList containing matching Element nodes
      */
-    'findAllBySelector': function (parentTarget, selector) {
-        let dom = ctd(parentTarget);                            // Get the DOM
-        return dom.querySelectorAll(selector);                  // Find all the matching elements inside the dom
+    findAllBySelector: (parentTarget, selector) => {
+        return ctd(parentTarget).querySelectorAll(selector);    // Find all the matching elements inside the dom
     },
 
     /**
@@ -201,8 +198,8 @@ P.prototype = {
      * @param target {Object|string}        DOM object or HTML element ID
      * @returns {*|HTMLElement|undefined}
      */
-    getDom: function(target){
-        return ctd(target, true);
+    getDom: (target) => {
+        return ctd(target, 1);
     },
 
     /**
