@@ -58,6 +58,12 @@ l.removeClass(sideBarDom, 'animate');
 
 ```
 
+### Commands to Add/Replace
+1. Add `l.attr(target, attributeName)` to fetch any attribute from the specified target (class, data-attribute, name, etc.)
+   * Replace `l.dataAttr()` with the above method
+
+### Current Commands
+
 | Command                         | Action                                                                                  |
 |:--------------------------------|:----------------------------------------------------------------------------------------|
 | `l.addClass(a, b)`              | Add one or more CSS classes to the target Element                                       |
